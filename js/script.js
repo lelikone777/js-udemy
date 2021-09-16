@@ -1,20 +1,24 @@
 "use strict";
 
-const personalMovieDB = {
-    count: start(),
-    movies: {},
-    actors: {},
-    genres: [],
-    privat: false,
-};
+
+let numberOfFilms;
 
 function start() {
-    let numberOfFilms = +prompt("Сколько фильмов вы посмотрели", "");
+    numberOfFilms = +prompt("Сколько фильмов вы посмотрели", "");
     while ( numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms) ) {
         numberOfFilms = +prompt("Сколько фильмов вы посмотрели", "");
     }
-    return numberOfFilms;
 }
+start();
+
+
+const personalMovieDB = {
+  count: numberOfFilms,
+  movies: {},
+  actors: {},
+  genres: [],
+  privat: false,
+};
 
 function rememberMyFilms() {
     for (let i = 0; i < 2; i++) {
