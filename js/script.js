@@ -10,10 +10,6 @@ const soldier = {
 
 const john = Object.create(soldier);
 
-// const John = {
-//   health: 100
-// };
+// Object.setPrototypeOf(john, soldier);
 
-// John.__proto__ = soldier;
-// Object.setPrototypeOf(John, soldier);
 john.sayHello();
