@@ -1,11 +1,18 @@
 "use strict";
 
-//To String
+const box = document.getElementById('box');
+console.log(box);
+const btns = document.getElementsByTagName('button')[1];
+console.log(btns);
+const circles = document.getElementsByClassName('circles');
+console.log(circles);
+const hearts = document.querySelectorAll('.heart');
+console.log(hearts);
 
-// 1)
 
-console.log(typeof(String(4)));
+hearts.forEach(item => {
+    console.log(item);
+});
 
-//2)
-
-console.log(typeof(5 + ''));
+const oneHeart = document.querySelector('.heart');
+console.log(oneHeart);
