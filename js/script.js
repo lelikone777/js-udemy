@@ -1,15 +1,21 @@
 "use strict";
+function hello() {
+    console.log('hello world');
+}
 
-const soldier = {
-    health: 400,
-    armor: 100,
-    sayHello: function () {
-        console.log('hello');
+hello();
+
+function hi() {
+    console.log('say hi');
+}
+
+hi();
+
+const arr = [1, 14, 4, 30, 54],
+    sorted = arr.sort(compareNum);
+
+    function compareNum(a, b) {
+        return a - b;
     }
-};
 
-const john = Object.create(soldier);
-
-// Object.setPrototypeOf(john, soldier);
-
-john.sayHello();
+console.log(sorted);
