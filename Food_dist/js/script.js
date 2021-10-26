@@ -1,6 +1,7 @@
 window.addEventListener("DOMContentLoaded", () => {
   "use strict";
 
+  //Tabs
   const tabs = document.querySelectorAll(".tabheader__item"),
     tabsContent = document.querySelectorAll(".tabcontent"),
     tabsParent = document.querySelector(".tabheader__items");
@@ -36,4 +37,17 @@ window.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
+
+  //Timer
+
+  const deadline = '3030-05-11';
+
+  function getTimeRemaining(endtime) {
+    const t = Date.parse(endtime) - Date.parse(new Date()),
+    days = Math.floor();
+  }
+
+
+
+
 });
