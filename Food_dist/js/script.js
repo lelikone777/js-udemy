@@ -1,7 +1,7 @@
 window.addEventListener("DOMContentLoaded", () => {
   "use strict";
 
-  // Tabs
+  // Tabs -----------------------------------------------------------
   const tabs = document.querySelectorAll(".tabheader__item"),
     tabsContent = document.querySelectorAll(".tabcontent"),
     tabsParent = document.querySelector(".tabheader__items");
@@ -38,7 +38,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  //Timer
+  //Timer ---------------------------------------------------
   const deadline = "2021-10-31";
 
   function getTimeRemaining(endTime) {
@@ -89,7 +89,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
   setClock(".timer", deadline);
 
-  //Modal
+  //Modal ---------------------------------------------------------------
   const modalTrigger = document.querySelectorAll("[data-modal]"),
     modal = document.querySelector(".modal"),
     modalCloseBtn = document.querySelector("[data-close]");
@@ -98,7 +98,7 @@ window.addEventListener("DOMContentLoaded", () => {
     modal.classList.add("show");
     modal.classList.remove("hide");
     document.body.style.overflow = "hidden";
-    clearInterval(ModalTimerId);
+    // clearInterval(ModalTimerId);
   }
 
   modalTrigger.forEach((btn) => {
@@ -125,7 +125,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const ModalTimerId = setTimeout(openModal, 10000);
+  // const ModalTimerId = setTimeout(openModal, 10000);
 
   function showModalByScroll() {
     if (
@@ -138,4 +138,70 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   window.addEventListener("scroll", showModalByScroll);
+
+  // Используем классы для карточек --------------------------------------
+  class MenuCard {
+    constructor(src, alt, title, description, prise, parentSelector) {
+      this.src = src;
+      this.alt = alt;
+      this.title = title;
+      this.description = description;
+      this.prise = prise;
+      this.parent = document.querySelector(parentSelector);
+      this.transfer = 74;
+      this.changeToRUB();
+    }
+    changeToRUB() {
+      this.prise = this.prise * this.transfer;
+    }
+    render() {
+      const element = document.createElement("div");
+      element.innerHTML = `
+        <div class="container">
+          <div class="menu__item">
+              <img src=${this.src} alt=${this.alt}>
+              <h3 class="menu__item-subtitle">${this.title}</h3>
+              <div class="menu__item-descr">${this.description}
+              </div>
+              <div class="menu__item-divider"></div>
+              <div class="menu__item-price">
+                  <div class="menu__item-cost">Цена:</div>
+                  <div class="menu__item-total"><span>${this.prise}</span> руб/день</div>
+              </div>
+          </div>
+      `;
+      this.parent.append(element);
+    }
+  }
+
+  new MenuCard(
+    "img/tabs/vegy.jpg",
+    "vegy",
+    'Меню "Фитнес"',
+    'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. ' +
+      "Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!",
+    9,
+    ".menu .container"
+  ).render();
+
+  new MenuCard(
+    "img/tabs/elite.jpg",
+    "elite",
+    "Меню “Премиум”",
+    "В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. " +
+      "Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!",
+    7,
+    ".menu .container"
+  ).render();
+
+  new MenuCard(
+    "img/tabs/post.jpg",
+    "vegy",
+    'Меню "Постное"',
+    "Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, " +
+      "молоко из миндаля, овса, кокоса или гречки, " +
+      "правильное количество белков за счет тофу и импортных вегетарианских стейков.",
+    5,
+    ".menu .container"
+  ).render();
 });
