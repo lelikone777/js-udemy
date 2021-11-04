@@ -39,7 +39,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   //Timer ---------------------------------------------------
-  const deadline = "2021-10-31";
+  const deadline = "2021-11-31";
 
   function getTimeRemaining(endTime) {
     const t = Date.parse(endTime) - Date.parse(new Date());
@@ -235,10 +235,22 @@ window.addEventListener("DOMContentLoaded", () => {
   };
 
   forms.forEach((item) => {
-    postData(item);
+    bindPostData(item);
   });
 
-  function postData(form) {
+  const postData = async (url, data) => {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: data,
+    });
+
+    return await res.json();
+  };
+
+  function bindPostData(form) {
     form.addEventListener("submit", (event) => {
       event.preventDefault();
 
@@ -251,18 +263,13 @@ window.addEventListener("DOMContentLoaded", () => {
 
       form.insertAdjacentElement("afterend", statusMessage);
       const formData = new FormData(form);
-      const obj = {};
+      const object = {};
+
       formData.forEach(function (value, key) {
-        obj[key] = value;
+        object[key] = value;
       });
 
-      fetch("server.php", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(obj),
-      })
+      postData("server.php", JSON.stringify(object))
         .then((data) => data.text())
         .then((data) => {
           console.log(data);
