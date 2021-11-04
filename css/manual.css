@@ -5,10 +5,6 @@
 .hide {
     display: none;
 }
-.hide {
-    display: none;
-}
-
 
 .fade {
     animation-name: fade;
