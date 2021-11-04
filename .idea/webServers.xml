@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="5a3548ee-1739-44cc-839c-61bbd05daff5" name="food_dist" url="">
-        <fileTransfer rootFolder="/www/alekseykalinin.ru/food_dist" accessType="FTPS" host="94.130.167.163" port="21">
+        <fileTransfer rootFolder="/www/alekseykalinin.ru/food_dist/" accessType="FTPS" host="94.130.167.163" port="21">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
@@ -11,5 +11,4 @@
       </webServer>
     </option>
   </component>
-<!--  http://94.130.167.163-->
 </project>
