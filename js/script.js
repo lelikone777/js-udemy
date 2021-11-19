@@ -274,7 +274,9 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-
+fetch('db.json/menu')
+    .then(data => data.json())
+    .then(res => console.log(res));
 
 
 
