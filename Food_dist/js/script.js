@@ -225,58 +225,58 @@ window.addEventListener("DOMContentLoaded", () => {
     "big"
   ).render();
 
+
+
   //Отправка форм
 
+  // fetch
   const forms = document.querySelectorAll("form");
-
-  const message = {
-    loading: "Загрузка",
-    success: "Спасибо! Скоро мы с вами свяжемся",
-    failure: "Что-то пошло не так...",
-  };
-
-  forms.forEach((item) => {
-    postData(item);
+  forms.forEach(f => {
+    postData(f);
   });
 
+  const message = {
+    loading: 'loading',
+    success: 'success',
+    failure: 'failure'
+  };
+
+
   function postData(form) {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      let statusMessage = document.createElement("div");
-      statusMessage.classList.add("status");
-      statusMessage.textContent = message.loading;
-      form.appendChild(statusMessage);
-
-      const request = new XMLHttpRequest();
-      request.open("POST", "server.php");
-
-      // request.setRequestHeader("Content-type", "multipart/form-data");
-      request.setRequestHeader("Content-type", "application/json");
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      console.log(message.loading);
       const formData = new FormData(form);
 
-      const obj = {};
-
-      formData.forEach(function (value, key) {
-        obj[key] = value;
+      const object = {};
+      formData.forEach(function (value, key){
+        object[key] = value;
       });
+      console.log(object);
 
-      const json = JSON.stringify(obj);
+      fetch('server.php', {
+        method: "POST",
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(object)
+      })
+          .then(data => data.text())
+          .then(data => {
+            console.log(data);
+            console.log(message.success);
 
-      request.send(json);
-
-      request.addEventListener("load", () => {
-        if (request.status === 200) {
-          console.log(request.response);
-          statusMessage.textContent = message.success;
-          form.reset();
-          setTimeout(() => {
-            statusMessage.remove();
-          }, 3000);
-        } else {
-          statusMessage.textContent = message.failure;
-        }
+      }).catch(() => {
+        console.log(message.failure);
+      }).finally(() => {
+        console.log('Thus is the end');
       });
     });
   }
+
+
+
+
+
+
 });
