@@ -528,4 +528,22 @@ window.addEventListener("DOMContentLoaded", () => {
       dots[slideIndex - 1].style.opacity = 1;
     });
   });
+
+  //Калькулятор
+
+
+  const result = document.querySelector('.calculating__result span');
+  let sex, height, weight, age, ratio;
+
+  function calcTotal() {
+    if (!sex || !height || !weight || !age || !ratio) {
+      result.textContent = '____';
+      return;
+    }
+
+    if () {
+
+    }
+  }
+
 });
