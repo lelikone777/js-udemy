@@ -58,6 +58,7 @@ class User {
     }
 }
 
+
 const ivan = new User('Ivan', 27);
 console.log(ivan.age);
 ivan.age = 99;
