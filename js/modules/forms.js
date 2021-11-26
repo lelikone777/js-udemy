@@ -33,7 +33,7 @@ function forms(formSelector, ModalTimerId) {
 
             const json = JSON.stringify(Object.fromEntries(formData.entries()));
 
-            postData("http://localhost:3000/requests", json)
+            postData("db.json/requests", json)
                 .then((data) => {
                     console.log(data);
                     showThanksModal(message.success);
